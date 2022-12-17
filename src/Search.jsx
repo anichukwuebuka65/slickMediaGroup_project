@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 
-export default function Search({ setMovies }) {
+export default function Search({ setMovies, setCategory }) {
   const [input, setInput] = useState("");
 
   const fetchData = () => {
-    fetch(`http://www.omdbapi.com/?apikey=ef42345f&s=${input}&type=series`)
+    fetch(`https://www.omdbapi.com/?apikey=ef42345f&s=${input}&type=series`)
       .then((res) => res.json())
       .then((data) => {
         setMovies(data.Search);
+        setCategory(input);
       });
   };
 
@@ -18,7 +19,7 @@ export default function Search({ setMovies }) {
   useEffect(() => {
     const timerId = setTimeout(() => {
       fetchData();
-    }, 1000);
+    }, 500);
 
     return () => {
       clearTimeout(timerId);
