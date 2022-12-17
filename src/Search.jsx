@@ -18,7 +18,7 @@ export default function Search({ setMovies, setCategory }) {
 
   useEffect(() => {
     const timerId = setTimeout(() => {
-      fetchData();
+      if (input) fetchData();
     }, 500);
 
     return () => {
